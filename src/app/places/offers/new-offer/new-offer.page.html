@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/places/tabs/offers"></ion-back-button>
+    </ion-buttons>
+    <ion-title>New Offer</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCreateOffer()">
+        <ion-icon name="checkMark" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="newForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Tile</ion-label>
+            <ion-input type="text" autocomplete autocorrect formControlName="title"></ion-input>
+          </ion-item>
+          <!-- <div *ngFor="let error of errorMessages.title">
+            <ng-container *ngIf="title.hasError(error.type) && (title.dirty || title.touched)">
+              <small class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div> -->
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Short Description</ion-label>
+            <ion-textarea rows="3" formControlName="description"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <div *ngFor="let error of errorMessages.description">
+        <ng-container *ngIf="description.hasError(error.type) && description.touched">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <!-- <ion-row *ngIf="newForm.get('description').touched && newForm.get('description').invalid">
+        <ion-col size-sm="6" offset-sm="3">
+          <p>Description must not be long 100 characters.</p>
+        </ion-col>
+      </ion-row> -->
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Price</ion-label>
+            <ion-input type="number" formControlName="price"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="3" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Available From</ion-label>
+            <ion-datetime min="2021-03-01" max="2025-12-31" formControlName="dateFrom"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col size-sm="3">
+          <ion-item>
+            <ion-label position="floating">Available To</ion-label>
+            <ion-datetime min="2021-03-02" max="2025-12-31" formControlName="dateTo"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
